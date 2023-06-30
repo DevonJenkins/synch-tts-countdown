@@ -1,21 +1,38 @@
+//----------------imports
 const { exec } = require('node:child_process')
 const prompt = require('prompt')
+//----------------imports
 
-prompt.start()
-function recurse() {
+//----------------imports
+function main (){
 
-	let message = prompt.get("message", function(err, result){
+	sonchLevel = 1
 
-		if (result.message === "synch"){
-				exec("say 'commence sonch in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]'")
-		} else if(result.message === "stop"){
-			prompt.stop()
-		} else {
-			let command = `say ${result.message}`
-			exec(command)
-		}
-		recurse()
-	}) 
+	exec("say commence sonch in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
+
+	recurse(sonchLevel)
+
+	function recurse(sonchLevel){
+		prompt.start()
+		let conf = prompt.get("y/n", function(err, result) {
+
+			result = Object.entries(result)[0][1]
+			if (result != "y") {
+				console.log("goodbye =]")
+				console.log(result)
+				prompt.stop()
+
+			} else {
+
+				console.log(result)
+				sonchLevel++
+				console.log("sonchLevel: ", sonchLevel)
+				exec(`say commence sonch, feature level ${sonchLevel} in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]
+`)
+				recurse(sonchLevel)
+			}
+		})
+	}
 }
 
-recurse()
+main()
