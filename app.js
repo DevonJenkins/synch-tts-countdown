@@ -21,13 +21,17 @@ function main (){
 				console.log("goodbye =]")
 				prompt.stop()
 			} else if (result == "y") {
-				//set up conditional logic here for 1, 2, and graeater levels
 				if (sonchLevel === 1) {
 					console.log("commense sonch in 3.. 2.. 1..")
+					exec("say commence sonch in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
+					
+
 				} else if (sonchLevel === 2) {
 					console.log("commense double feature in 3.. 2.. 1..")
+					exec("say commence double feature in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
 				} else {
 					console.log(`commense level ${sonchLevel} feature in 3.. 2.. 1..`)	
+					exec(`say commence level ${sonchLevel} feature in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]`)
 				}
 
 				//exec(`say commence sonch, feature level ${sonchLevel} in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]`)
