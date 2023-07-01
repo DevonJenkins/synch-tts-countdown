@@ -7,7 +7,8 @@ function main (){
 
 	sonchLevel = 1
 
-	//exec("say commence sonch in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
+	exec("say commence sonch in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
+	sonchLevel++
 	console.log("commence sonch")
 
 	recurse(sonchLevel)
@@ -15,18 +16,12 @@ function main (){
 	function recurse(sonchLevel){
 		prompt.start()
 		let conf = prompt.get("y/n", function(err, result) {
-
 			result = Object.entries(result)[0][1]
 			if (result == "n") {
 				console.log("goodbye =]")
 				prompt.stop()
 			} else if (result == "y") {
-				if (sonchLevel === 1) {
-					console.log("commense sonch in 3.. 2.. 1..")
-					exec("say commence sonch in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
-					
-
-				} else if (sonchLevel === 2) {
+				  if (sonchLevel === 2) {
 					console.log("commense double feature in 3.. 2.. 1..")
 					exec("say commence double feature in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]")
 				} else {
@@ -34,7 +29,6 @@ function main (){
 					exec(`say commence level ${sonchLevel} feature in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]`)
 				}
 
-				//exec(`say commence sonch, feature level ${sonchLevel} in three [[slnc 1000]] two [[slnc 1000]] one [[slnc 1000]]`)
 				sonchLevel++
 				recurse(sonchLevel)
 			} else if (result == "r"){
