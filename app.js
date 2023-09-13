@@ -3,23 +3,28 @@ const prompt = require("prompt");
 
 function main() {
   sonchLevel = 1;
-	message = null;
+  message = null;
   doCountdown(sonchLevel, message, "sonch");
 }
 
 main();
 
 function doCountdown(sonchLevel, message, level) {
-	const getRandomPitchValue = (max) => {
+  const getRandomValue = (max) => {
     return Math.floor(Math.random() * max);
   };
-  message = `say commence [[pbas ${getRandomPitchValue(
+
+  message = `say commence [[pbas ${getRandomValue(
     100,
-  )}]] ${level} in [[rate 75]] [[pbas ${getRandomPitchValue(
+  )}]] ${level} in [[rate ${getRandomValue(500)}]] [[pbas ${getRandomValue(
     100,
-  )}]] three [[slnc 1000]] [[pbas ${getRandomPitchValue(
+  )}]] three [[rate 175]] [[slnc 1000]] [[rate ${getRandomValue(
+    500,
+  )}]] [[pbas ${getRandomValue(
     100,
-  )}]]two [[slnc 1000]] [[pbas ${getRandomPitchValue(100)}]]one [[slnc 1000]]`;
+  )}]]two [[rate 175]] [[slnc 1000]] [[rate ${getRandomValue(
+    500,
+  )}]] [[pbas ${getRandomValue(100)}]]one [[rate 175]][[slnc 1000]]`;
 
   let text = `Commence ${level} in three ... two ... one`;
 
@@ -36,6 +41,7 @@ function doCountdown(sonchLevel, message, level) {
         prompt.stop();
         return 1;
       }
+
       if (result == "y") {
         if (sonchLevel === 1) {
           level = "sonch";
@@ -48,6 +54,7 @@ function doCountdown(sonchLevel, message, level) {
         sonchLevel--;
         console.log(sonchLevel);
       } else {
+        prompt.stop();
         console.log("invalid command");
         return 1;
       }
@@ -58,3 +65,11 @@ function doCountdown(sonchLevel, message, level) {
 
 //change commense sonch to something else on occasion.
 //stink up
+//
+//randomly change rates
+//
+//remember the directory you were in when you called synch, and go to it after
+//sonch bot is called?
+//
+//seems unnecessary when I can just alter the alias to call sonch bot from
+//wherever
