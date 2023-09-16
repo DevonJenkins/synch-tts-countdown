@@ -58,6 +58,10 @@ function doCountdown(sonchLevel, message, level) {
         } else {
           level = `level ${sonchLevel} feature`;
         }
+      } else if (result == "f") {
+        sonchLevel--;
+        console.log(sonchLevel);
+				level = 'final feature'
       } else if (result == "r") {
         sonchLevel--;
         console.log(sonchLevel);
