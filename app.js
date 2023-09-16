@@ -10,20 +10,21 @@ function main() {
 main();
 
 function doCountdown(sonchLevel, message, level) {
-  const getRandomValue = (max) => {
-    return Math.floor(Math.random() * max);
+  const getRandomValue = (min, max) => {
+		//get min and max value to even everything out
+    return Math.floor(Math.random() * (max - min) + min);
   };
 
   message = `say commence [[pbas ${getRandomValue(
-    100,
-  )}]] ${level} in [[rate ${getRandomValue(500)}]] [[pbas ${getRandomValue(
-    100,
+    0, 100,
+  )}]] ${level} in [[rate ${getRandomValue(100, 400)}]] [[pbas ${getRandomValue(
+    0, 100,
   )}]] three [[rate 175]] [[slnc 1000]] [[rate ${getRandomValue(
-    500,
+    100, 400,
   )}]] [[pbas ${getRandomValue(
-    100,
-  )}]]two [[rate 175]] [[slnc 1000]] [[rate ${getRandomValue(
-    500,
+    0, 100,
+  )}]]two [[rate 175]][[slnc 1000]] [[rate ${getRandomValue(
+    100, 400,
   )}]] [[pbas ${getRandomValue(100)}]]one [[rate 175]][[slnc 1000]]`;
 
   let text = `Commence ${level} in three ... two ... one`;
@@ -73,3 +74,6 @@ function doCountdown(sonchLevel, message, level) {
 //
 //seems unnecessary when I can just alter the alias to call sonch bot from
 //wherever
+
+//TODO create multiple messages and randomly choose from them 
+//
