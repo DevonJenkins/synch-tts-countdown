@@ -61,7 +61,7 @@ function doCountdown(sonchLevel, message, level) {
       } else if (result == "f") {
         sonchLevel--;
         console.log(sonchLevel);
-				level = 'final feature'
+        level = "final feature";
       } else if (result == "r") {
         sonchLevel--;
         console.log(sonchLevel);
@@ -74,6 +74,21 @@ function doCountdown(sonchLevel, message, level) {
     });
   }, 3000);
 }
+
+function argvTest(){
+	console.log("argV test function")
+
+	if(process.argv[2]) {
+		console.log(process.argv[2])
+	} else {
+		console.log('no arg entered')
+
+	}
+	
+
+}
+
+argvTest()
 
 //change commense sonch to something else on occasion.
 //stink up
