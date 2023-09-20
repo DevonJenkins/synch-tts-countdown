@@ -76,22 +76,29 @@ function doCountdown(sonchLevel, message, level) {
 }
 
 function detectArgV() {
-  console.log("argV test function");
-  if (process.argv[2]) {
-    console.log(process.argv[2]);
-  } else {
-    console.log("no arg entered");
-    //link below for how todeal with command line args in node
-    //build out default functionality
-    //if default, set sonch level to zero
-    //else set sonch level to number (assuming number is actually valid)
-    //build out multiple arg detection
+	const flag = (process.argv.indexOf('-f') > -1 ? 'Flag is Present.' : 'Flag is not present')
 
-    //https://www.digitalocean.com/community/tutorials/nodejs-command-line-arguments-node-scripts
+  const customIndex = process.argv.indexOf('--custom');
+  let customValue;
+
+  if (customIndex > -1) {
+    customValue = process.argv[customIndex];
   }
+
+  const custom = ( customValue || 'Default' );
+
+  console.log(`Flag: , ${flag}`);
+  console.log(`Custom: , ${custom}`);
+
+  //link below for how todeal with command line args in node
+  //build out default functionality
+  //if default, set sonch level to zero
+  //else set sonch level to number (assuming number is actually valid)
+  //build out multiple arg detection
+  //https://www.digitalocean.com/community/tutorials/nodejs-command-line-arguments-node-scripts
 }
 
-detectArgV()
+detectArgV();
 //change commense sonch to something else on occasion.
 //stink up
 //
@@ -105,4 +112,4 @@ detectArgV()
 
 //TODO create multiple messages and randomly choose from them
 //NOTE mode ideas: low mode, alien mode (change voice to alien), silly mode,
-	//normal mode
+//normal mode
