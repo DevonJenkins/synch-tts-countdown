@@ -4,7 +4,12 @@ const prompt = require("prompt");
 function main() {
   sonchLevel = 1;
   message = null;
-  doCountdown(sonchLevel, message, "sonch");
+	detectArgV();
+	//how can I refactor to add variations to countdown? 
+		//the main thing being altered is the message itself, and level.
+		//Focus on these two parameters
+	
+  doCountdown(sonchLevel, message, detectArgV());
 }
 
 main();
@@ -88,14 +93,28 @@ function detectArgV() {
   const customIndex = process.argv.indexOf("--custom");
   let customValue;
 
+	//detect solo synch
+	const soloSynchIndex = process.argv.indexOf("-s")
+
   if (customIndex > -1) {
     customValue = process.argv[customIndex];
   }
 
+	if (soloSynchIndex > -1) {
+		sonchValue = process.argv[soloSynchIndex]
+	}
+
   const custom = customValue || "Default";
+  const solo = "solo" || "Default";
 
   console.log(`Flag: , ${flag}`);
   console.log(`Custom: , ${custom}`);
+
+	if (solo === "Default") {
+		return "sonch"
+	} else {
+		return "solo sonch"
+	}
 
   //link below for how todeal with command line args in node
   //build out default functionality
@@ -105,7 +124,6 @@ function detectArgV() {
   //https://www.digitalocean.com/community/tutorials/nodejs-command-line-arguments-node-scripts
 }
 
-detectArgV();
 
 //change commense sonch to something else on occasion.
 //stink up
