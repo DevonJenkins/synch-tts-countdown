@@ -11,7 +11,6 @@ main();
 
 function doCountdown(sonchLevel, message, level) {
   const getRandomValue = (min, max) => {
-    //get min and max value to even everything out
     return Math.floor(Math.random() * (max - min) + min);
   };
 
@@ -42,50 +41,58 @@ function doCountdown(sonchLevel, message, level) {
     prompt.start();
     let confirmation = prompt.get("continue? (y/n)", function (err, result) {
       result = Object.entries(result)[0][1];
-      if (result == "n") {
-        console.log("goodbye =]");
-        prompt.stop();
-        return 1;
-      }
-
-      if (result == "y") {
-        if (sonchLevel === 1) {
-          level = "sonch";
-        } else if (sonchLevel === 2) {
-          level = "double feature";
-        } else if (sonchLevel === 3) {
-          level = "triple feature";
-        } else {
-          level = `level ${sonchLevel} feature`;
-        }
-      } else if (result == "f") {
-        sonchLevel--;
-        console.log(sonchLevel);
-        level = "final feature";
-      } else if (result == "r") {
-        sonchLevel--;
-        console.log(sonchLevel);
-      } else {
-        prompt.stop();
-        console.log("invalid command");
-        return 1;
-      }
-      doCountdown(sonchLevel, message, level);
+      parseCommand(sonchLevel, message, level, err, result);
     });
   }, 3000);
 }
 
-function detectArgV() {
-	const flag = (process.argv.indexOf('-f') > -1 ? 'Flag is Present.' : 'Flag is not present')
+function parseCommand(sonchLevel, message, level, err, result) {
+  if (result == "n") {
+    console.log("goodbye =]");
+    prompt.stop();
+    return 1;
+  }
+  if (result == "y") {
+    if (sonchLevel === 1) {
+      level = "sonch";
+    } else if (sonchLevel === 2) {
+      level = "double feature";
+    } else if (sonchLevel === 3) {
+      level = "triple feature";
+    } else {
+      level = `level ${sonchLevel} feature`;
+    }
+  } else if (result == "f") {
 
-  const customIndex = process.argv.indexOf('--custom');
+    sonchLevel--;
+    console.log(sonchLevel);
+    level = "final feature";
+
+  } else if (result == "r") {
+    sonchLevel--;
+    console.log(sonchLevel);
+  } else {
+    prompt.stop();
+    console.log("invalid command");
+    return 1;
+  }
+  doCountdown(sonchLevel, message, level);
+}
+
+function detectArgV() {
+  const flag =
+    process.argv.indexOf("-f") > -1
+      ? "Flag is Present."
+      : "Flag is not present";
+
+  const customIndex = process.argv.indexOf("--custom");
   let customValue;
 
   if (customIndex > -1) {
     customValue = process.argv[customIndex];
   }
 
-  const custom = ( customValue || 'Default' );
+  const custom = customValue || "Default";
 
   console.log(`Flag: , ${flag}`);
   console.log(`Custom: , ${custom}`);
@@ -99,17 +106,19 @@ function detectArgV() {
 }
 
 detectArgV();
+
 //change commense sonch to something else on occasion.
 //stink up
-//
-//randomly change rates
-//
-//remember the directory you were in when you called synch, and go to it after
-//sonch bot is called?
-//
-//seems unnecessary when I can just alter the alias to call sonch bot from
-//wherever
+//sync up
+//wink up
+//${insert random consonant here}ink up
 
 //TODO create multiple messages and randomly choose from them
 //NOTE mode ideas: low mode, alien mode (change voice to alien), silly mode,
 //normal mode
+//
+//TODO how can I turn this into an executable
+//TODO package function arguments into a single object
+//synch level, message, level
+//TODO I could modularize messages to make code more readable as more messages
+//are inevitably created
